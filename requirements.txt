@@ -1,0 +1,29 @@
+# Core frameworks
+langchain
+langchain-community
+langchain-core
+langchain-chroma
+langchain-huggingface
+
+# Vector database
+chromadb
+
+# PDF loading and parsing
+PyPDF2
+
+# Text splitting and utilities
+tqdm
+python-dotenv
+
+# Embeddings & transformers
+transformers
+sentence-transformers
+torch
+
+# Optional: useful in Colab or multi-device training
+accelerate
+
+requests
+beautifulsoup4
+tqdm
+
