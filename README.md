@@ -1,5 +1,5 @@
 
-# 🧠 FinPilot – AI-Powered Financial Assistant (PoC)
+# 🧠 FinPilot – AI-Powered Financial Assistant
 
 FinPilot is an intelligent financial co-pilot powered by local LLMs via LangChain and Ollama. It helps users:
 
@@ -38,7 +38,8 @@ FinPilot is an intelligent financial co-pilot powered by local LLMs via LangChai
 
 | Task / Feature                                       | Status       |
 |------------------------------------------------------|--------------|
-| Handle OutputParserException (add `handle_parsing_errors=True`) | ✅ Done |
+| Handle OutputParserException (`handle_parsing_errors=True`) | ✅ Done |
+| Replace deprecated LangChain imports (≥ 0.2)         | ⚠️ In Progress |
 | Add robust fallback/retry logic                      | 🕓 Future |
 | Add UI upload / file API                             | 🕓 Future |
 | Add memory for context tracking                      | 🕓 Future |
@@ -47,25 +48,32 @@ FinPilot is an intelligent financial co-pilot powered by local LLMs via LangChai
 
 ---
 
-## 🏗️ Project Structure
+## 🏗️ Updated Project Structure
 
 ```
 FinPilot/
 ├── app/
+│   ├── __init__.py
 │   ├── agent_setup.py
+│   ├── get_embedding_function.py
+│   ├── load_data.py
 │   ├── main_tools.py
 │   └── tools/
 │       ├── comparecompanies_tool.py
 │       ├── financialqa_tool.py
-│       ├── ratioanalysis_tool.py
+│       ├── pdfretriever.py
+│       ├── pdfretriver_tool.py
 │       ├── qa_tool.py
-│       ├── voice_tool.py
-│       └── pdfretriever.py
-├── chroma_vectordb/
-├── models/
-├── .env.sample
+│       ├── ratioanalysis_tool.py
+│       ├── summarizer_tool.py
+│       ├── test_compare.py
+│       ├── urlscraper_tool.py
+│       └── voice_tool.py
+├── .gitignore
+├── README.md
+├── architecture.png
+├── agentic_copilot.ipynb
 ├── requirements.txt
-└── README.md
 ```
 
 ---
@@ -80,7 +88,7 @@ cd finpilot
 
 # Create and activate virtual environment
 python -m venv .venv
-.venv\Scriptsctivate     # On Windows
+.venv\Scripts\activate     # On Windows
 # OR
 source .venv/bin/activate  # On macOS/Linux
 
