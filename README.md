@@ -1,44 +1,24 @@
+
 # 🧠 FinPilot – AI-Powered Financial Assistant (PoC)
 
-FinPilot is an intelligent financial research assistant that uses LLMs (via LangChain and Ollama) to help users:
+FinPilot is an intelligent financial co-pilot powered by local LLMs via LangChain and Ollama. It helps users:
 
-- ✅ Answer questions from uploaded financial reports
-- ✅ Compare two companies using retrieved documents
+- ✅ Answer questions from financial documents
+- ✅ Compare two companies using retrieved insights
 - ✅ Perform financial ratio analysis
-- ✅ Summarize financial text/PDFs
-- ✅ Read results aloud via voice agent (TTS)
-- ✅ Use multiple tools in a **multi-agent reasoning workflow**
+- ✅ Summarize financial reports and text
+- ✅ Read results aloud using a voice agent (TTS)
+- ✅ Use tools in a multi-agent reasoning workflow
 
 ---
 
 ## 🧩 Architecture Overview
 
-# 🧠 FinPilot – AI-Powered Financial Assistant (PoC)
-
-
-                                 ┌────────────────────┐
-                                 │    AgentExecutor    │
-                                 └─────────┬──────────┘
-                                           │
-            ┌──────────────────────────────┼───────────────────────────────┐
-            │                              │                               │
-   🛠️ compare_companies()        🧮 answer_financial_question()       📊 ratio_analysis()
-            │                              │                               │
-   🔍 Vector DB (Chroma)           🔍 Vector DB (Chroma)             🔍 Vector DB (Chroma)
-            │                              │                               │
-            ▼                              ▼                               ▼
-       NVIDIA 10-Qs etc              Embedded PDF docs                Financials context
-
-            ┌──────────────────────────────┼───────────────────────────────┐
-            │                              │                               │
-   📑 answer_pdf_question()      🗣️ speak_text()                  🧠 summarize_text_block()
-         (via RAG on PDFs)       (Text-to-speech agent)              (LLM summarizer)
-
-
+![FinPilot Architecture](architecture.png)
 
 ---
 
-## ✅ Completed Functionality
+## ✅ Completed Features
 
 | Feature                          | Status  |
 |----------------------------------|---------|
@@ -54,39 +34,39 @@ FinPilot is an intelligent financial research assistant that uses LLMs (via Lang
 
 ---
 
-## 🚧 What’s Left (for POC Completion)
+## 🚧 Work in Progress (For PoC Completion)
 
-| Task / Feature                                        | Status      |
-|-------------------------------------------------------|-------------|
-| Handle `OutputParserException` in agent (via `handle_parsing_errors=True`) | ✅ Done |
-| Replace deprecated imports (LangChain ≥ 0.2)          | ⚠️ In Progress |
-| Add robust fallback/retry logic                       | 🕓 Next |
-| Add UI upload / file API                              | 🕓 Next |
-| Add memory for context tracking                       | 🕓 Future |
-| Web Interface (streamlit/Gradio)                      | 🔜 Optional |
-| Real-time stock data integration                      | 🔜 Optional |
+| Task / Feature                                       | Status       |
+|------------------------------------------------------|--------------|
+| Handle OutputParserException (add `handle_parsing_errors=True`) | ✅ Done |
+| Add robust fallback/retry logic                      | 🕓 Future |
+| Add UI upload / file API                             | 🕓 Future |
+| Add memory for context tracking                      | 🕓 Future |
+| Web interface (Streamlit/Gradio)                     | 🔜 Optional |
+| Real-time stock data integration                     | 🔜 Optional |
 
 ---
 
-## 🏗️ Directory Structure
+## 🏗️ Project Structure
 
+```
 FinPilot/
 ├── app/
-│ ├── agent_setup.py
-│ ├── main_tools.py
-│ └── tools/
-│ ├── comparecompanies_tool.py
-│ ├── financialqa_tool.py
-│ ├── ratioanalysis_tool.py
-│ ├── qa_tool.py
-│ ├── voice_tool.py
-│ └── pdfretriever.py
+│   ├── agent_setup.py
+│   ├── main_tools.py
+│   └── tools/
+│       ├── comparecompanies_tool.py
+│       ├── financialqa_tool.py
+│       ├── ratioanalysis_tool.py
+│       ├── qa_tool.py
+│       ├── voice_tool.py
+│       └── pdfretriever.py
 ├── chroma_vectordb/
 ├── models/
 ├── .env.sample
 ├── requirements.txt
 └── README.md
-
+```
 
 ---
 
@@ -97,17 +77,31 @@ FinPilot/
 ```bash
 git clone https://github.com/yourname/finpilot.git
 cd finpilot
+
+# Create and activate virtual environment
 python -m venv .venv
-.venv\Scripts\activate      # On Windows
+.venv\Scriptsctivate     # On Windows
 # OR
-source .venv/bin/activate   # On macOS/Linux
+source .venv/bin/activate  # On macOS/Linux
 
+# Install dependencies
 pip install -r requirements.txt
+```
 
+### 🚀 Run the Agent
 
-🚀 Run the Agent
-
+```bash
 python -m app.agent_setup
+```
+
 You’ll see:
+```
 🔁 Waiting for your input...
 Ask your financial assistant:
+```
+
+---
+
+## 👨‍💻 Author
+
+Built by Sitarama
